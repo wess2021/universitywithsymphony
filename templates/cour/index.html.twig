@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cour index{% endblock %}
+
+{% block body %}
+    <h1>Liste des cours</h1>
+    <form class="d-flex" method="POST" action="{{path('serachbyname')}}">
+       
+        <button class="genric-btn success-border circle" type="submit" value="serachbyname">Search Cours</button>
+      </form>
+      <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+              
+                <th>Name</th>
+                <th>Date</th>
+                <th>Fichier</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cour in cours %}
+            <tr>
+                
+                <td>{{ cour.name }}</td>
+                <td>{{ cour.date ? cour.date|date('Y-m-d') : '' }}</td>
+                <th><a href="{{asset('uploads/')}}{{cour.fichier}}" class="genric-btn primary-border small" >{{cour.fichier}}</a></th>
+                <td>{{ cour.description }}</td>
+                <td>{{ cour.content }}</td>
+                <td>
+                    <a class="genric-btn info" href="{{ path('cour_show', {'id': cour.id}) }}">show</a>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a class="genric-btn primary" href="{{ path('cour_edit', {'id': cour.id}) }}">edit</a>
+                      {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a class="btn btn-primary" href="{{ path('cour_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}

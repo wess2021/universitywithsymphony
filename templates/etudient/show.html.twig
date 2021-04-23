@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudient{% endblock %}
+
+{% block body %}
+    <h1>Etudient</h1>
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Fullname</th>
+                <td>{{ etudient.fullname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ etudient.email }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ etudient.tel }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ etudient.cin }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="genric-btn info" href="{{ path('etudient_index') }}">back to list</a>
+
+    <a class="genric-btn primary" href="{{ path('etudient_edit', {'id': etudient.id}) }}">edit</a>
+
+    {{ include('etudient/_delete_form.html.twig') }}
+{% endblock %}

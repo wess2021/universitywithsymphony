@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('message') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+{{message}}
+
+</div>
+{% endfor %}
+<section class="container">
+    <div class="row">
+        <div class="col">
+        <h1>Mes messages</h1>
+        <p>Résumé de la messagerie</p>
+        <p>Réçus:{{app.user.received|length}}</p>
+        <p>Envoyés:{{app.user.sent|length}}</p>
+        <a href="{{path('send')}}" class="btn btn-primary">envoyer message</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

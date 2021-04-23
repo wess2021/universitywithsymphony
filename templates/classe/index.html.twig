@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classe index{% endblock %}
+
+{% block body %}
+    <h1>Classe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Name_classe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for classe in classes %}
+            <tr>
+              
+                <td>{{ classe.nameClasse }}</td>
+                <td>
+                    <a class="genric-btn info" href="{{ path('classe_show', {'id': classe.id}) }}">show</a>
+                   {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a class="genric-btn primary" href="{{ path('classe_edit', {'id': classe.id}) }}">edit</a>
+                     {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a  class="btn btn-primary"  href="{{ path('classe_new') }}">Create new</a>
+{% endif %}   
+{% endblock %}

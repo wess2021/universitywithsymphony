@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>Your profile</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>PHOTO de profile</th>
+                <td><img src="{{asset('uploads/')}}{{app.user.image}}" style="width:300px; height:300px" alt=""></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ app.user.roles ? app.user.roles|json_encode : '' }}</td>
+            </tr>
+             
+            <tr>
+                <th>fullname</th>
+                <td>{{ app.user.fullname }}</td>
+            </tr>
+            <tr>
+                <th>telephone</th>
+                <td>{{ app.user.telphone }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ app.user.date_de_naissance | date ('d/m/y')}}</td>
+            </tr>
+      
+    
+           
+        </tbody>
+    </table>
+<a class="genric-btn primary" href="{{ path('user_modifier') }}">edit</a>
+   
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Departement{% endblock %}
+
+{% block body %}
+    <h1>Create new Departement</h1>
+    <a class="genric-btn primary-border circle" href="{{ path('departement_index') }}">back to list</a>
+
+    {{ include('departement/_form.html.twig') }}
+
+    
+{% endblock %}

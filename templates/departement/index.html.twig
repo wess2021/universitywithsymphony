@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departement index{% endblock %}
+
+{% block body %}
+    <h1>Departement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Name</th>
+                <th>classe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for departement in departements %}
+            <tr>
+             
+                <td>{{ departement.name }}</td>
+                <td>
+               {% for classes in departement.classes %}
+                 <li>{{ classes.name_classe }}</li>
+                {% endfor %}
+                </td>
+                <td>
+                    <a class="genric-btn info" href="{{ path('departement_show', {'id': departement.id}) }}">show</a>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a class="genric-btn primary" href="{{ path('departement_edit', {'id': departement.id}) }}">edit</a>
+                      {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a class="btn btn-primary" href="{{ path('departement_new') }}">Create new</a>
+      {% endif %}
+{% endblock %}

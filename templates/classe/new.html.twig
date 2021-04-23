@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Classe{% endblock %}
+
+{% block body %}
+    <h1>Create new Classe</h1>
+    <a class="genric-btn primary-border circle" href="{{ path('classe_index') }}">back to list</a>
+
+    {{ include('classe/_form.html.twig') }}
+
+    
+{% endblock %}

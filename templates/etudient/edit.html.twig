@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Etudient{% endblock %}
+
+{% block body %}
+    <h1>Edit Etudient</h1>
+    
+    <a class="genric-btn primary-border circle" href="{{ path('etudient_index') }}">back to list</a>
+
+    {{ include('etudient/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('etudient/_delete_form.html.twig') }}
+{% endblock %}

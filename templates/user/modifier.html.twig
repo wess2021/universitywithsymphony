@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+{% block stylesheets %}
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+{% block body %}
+    <h1>Your profile</h1>
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Email</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ app.user.roles ? app.user.roles|json_encode : '' }}</td>
+            </tr>
+             <tr>
+                <th>Telephone</th>
+                <td>{{ app.user.telphone }}</td>
+            </tr>
+            <tr>
+                <th>fullname</th>
+                <td>{{ app.user.fullname }}</td>
+            </tr>
+        
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+
+           
+        </tbody>
+    </table>
+
+{% block javascripts %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+        jQuery(document).ready(function() {
+            $('.js-datepicker').datepicker();
+        });
+
+</script>
+{% endblock %}
+
+{% endblock %}

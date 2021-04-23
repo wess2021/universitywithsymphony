@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cour{% endblock %}
+
+{% block body %}
+    <h1>Create new Cour</h1>
+     <a class="genric-btn primary-border circle" href="{{ path('cour_index') }}">back to list</a>
+
+    {{ include('cour/_form.html.twig') }}
+
+   
+{% endblock %}

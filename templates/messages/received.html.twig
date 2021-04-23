@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block body %}
+ <h2>Messages réçus</h2>
+        <p>Vous avez réçue {{app.user.received|length}} messages</p>
+<table class="table">
+        <thead>
+            <tr>
+              
+                <th>De</th>
+                <th>Sujet</th>
+                <th>Date</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for messa in app.user.received %}
+         {% if messa.is_read == 0 %}
+           {% set bold ="fw-bold" %}
+           {% else %}
+            {% set bold ="" %}
+            {% endif %}
+            <tr>
+                
+                <td>{{messa.sender.email}}</td>
+                <td>{{messa.message}}</td>
+                <td>{{messa.created_at|date}}</td>
+               
+                <td>
+                   <a href="{{path('read',{id : messa.id})}}">read</a>
+                    
+                    <a href="{{path('delete_message',{id : messa.id})}}">delete</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

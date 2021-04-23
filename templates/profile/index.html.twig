@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classe index{% endblock %}
+
+{% block body %}
+    <h1>Classe index</h1>
+
+    <h1>Profile</h1>
+
+    <table class="table">
+        <tbody>
+        {% for profile in profiles %}
+         <tr>
+                <th>My picture</th>
+                <td><img src="{{asset('uploads/')}}{{profile.image}}" style="width:300px; height:300px" alt=""></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ profile.email}}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ profile.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ profile.Prenom }}</td>
+            </tr>
+           
+            <tr>
+                <th>Date_de_naissance</th>
+                <td>{{ profile.dateDeNaissance ? profile.dateDeNaissance|date('Y-m-d') }}</td>
+            </tr>
+            <tr><th><a class="genric-btn primary" href="{{ path('profile_edit', {'id': profile.id}) }}">edit</a></th></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% if is_granted('ROLE_USER') %}
+    <a  class="btn btn-primary"  href="{{ path('profile_new') }}">Create new</a>
+   
+{% endif %}   
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Freelance{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.Name) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <br>
+ <button type="submit" class="genric-btn success-border circle">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form) }}
+
+<table  class="table table-success table-striped">
+<thead>
+<tr>
+<th>Name</th>
+<th>Date</th>
+<th>Fichier</th>
+<th>Description</th>
+<th>Content</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for cour in cours %}
+ <tr>
+<td>{{ cour.name }}</td>
+<td>{{ cour.date ? cour.date|date('Y-m-d') : '' }}</td>
+<th><a href="{{asset('uploads/')}}{{cour.fichier}}" class="btn btn-success" >{{cour.fichier}}</a></th>
+<td>{{ cour.description }}</td>
+<td>{{ cour.content }}</td>
+<td>
+    <a class="genric-btn info" href="{{ path('cour_show', {'id': cour.id}) }}">show</a>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a class="genric-btn primary" href="{{ path('cour_edit', {'id': cour.id}) }}">edit</a>
+        {% endif %}
+</td>
+</tr>
+ {% endfor %}
+
+
+
+</tbody>
+</table>
+
+{% endblock %}
